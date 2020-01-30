@@ -1,20 +1,27 @@
-float x;
-float y;
-float easing = 1;
+import processing.serial.*;
+Serial serialBruh;
+int x = 0;
+int y = 0;
 
 void setup() {
-  size(500, 650); 
-  //noStroke();
+  size(500, 650);
+  serialBruh = new Serial(this, Serial.list()[2], 9600);
 }
 
 void draw() { 
-  background(0, 0, 0);
+  background(0, 225, 0);
   //println(mouseX, mouseY);
   float cx = constrain(mouseX, 0, 500);
   float cy = constrain(mouseY, 0, 500);
-  
+
   float mx = map(cx, 0, 500, 0, 180);
   float my = map(cy, 0, 500, 0, 180);
+
+  int xdata = (int) mx;
+  int ydata = (int) my;
+  String xstring = str(xdata);
+  String ystring = str(ydata);
+  String data = xstring+","+ystring+"&";
 
   stroke(255);
   strokeWeight(5);
@@ -24,20 +31,14 @@ void draw() {
   stroke(255);
   strokeWeight(5);
   line(0, 500, 500, 500);
-  
+
   textSize(25);
   text("Servo 1:", 100, 550);
   text("Servo 2:", 100, 600);
   text(mx, 200, 550);
   text(my, 200, 600);
 
-  float targetX = mouseX;
-  float dx = targetX - x;
-  x += dx * easing;
-
-  float targetY = mouseY;
-  float dy = targetY - y;
-  y += dy * easing;
-
   ellipse(cx, cy, 10, 10);
+  //println(data);
+  serialBruh.write(data);
 }
