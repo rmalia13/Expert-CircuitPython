@@ -1,4 +1,5 @@
 # Expert-CircuitPython
+<img src="proToCircuit.png" width=300;>
 
 ##hello circuit python
 
