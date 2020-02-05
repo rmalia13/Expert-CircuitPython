@@ -4,12 +4,14 @@ int x = 0;
 int y = 0;
 
 void setup() {
+  frameRate(40);
   size(500, 650);
   serialBruh = new Serial(this, Serial.list()[2], 9600);
+  print(Serial.list());
 }
 
 void draw() { 
-  background(0, 225, 0);
+  background(0, 5, 0);
   //println(mouseX, mouseY);
   float cx = constrain(mouseX, 0, 500);
   float cy = constrain(mouseY, 0, 500);
@@ -19,10 +21,10 @@ void draw() {
 
   int xdata = (int) mx;
   int ydata = (int) my;
-  String xstring = str(xdata);
-  String ystring = str(ydata);
-  String data = xstring+","+ystring+"&";
-
+  String xstring = nf(xdata,3);
+  String ystring = nf(ydata,3);
+  String data = xstring+","+ystring+" ";
+  //print("huh?");
   stroke(255);
   strokeWeight(5);
   line(250, 500, 250, 0);
@@ -39,6 +41,7 @@ void draw() {
   text(my, 200, 600);
 
   ellipse(cx, cy, 10, 10);
-  //println(data);
+  println(data);
+  // TO DO: FIX THIS PART
   serialBruh.write(data);
 }
