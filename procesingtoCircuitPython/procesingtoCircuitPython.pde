@@ -21,10 +21,10 @@ void draw() {
 
   int xdata = (int) mx;
   int ydata = (int) my;
-  String xstring = nf(xdata,3);
-  String ystring = nf(ydata,3);
-  String data = xstring+","+ystring+" ";
-  //print("huh?");
+  String xstring = nf(xdata,3);//y string  val
+  String ystring = nf(ydata,3);//y string  val
+  String data = xstring+","+ystring+" ";//prints both values in the console 
+  //prints the x and y values on the GUI
   stroke(255);
   strokeWeight(5);
   line(250, 500, 250, 0);
@@ -42,6 +42,6 @@ void draw() {
 
   ellipse(cx, cy, 10, 10);
   println(data);
-  // TO DO: FIX THIS PART
+  
   serialBruh.write(data);
 }
